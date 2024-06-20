@@ -13,7 +13,8 @@ WORKDIR /wd
 #to COPY the remote file at working directory in container
 COPY . ./
 
-RUN mkdir temp -p
+# As the algorithm will be executed by a non-root user, the output folder has to be writable for all
+RUN mkdir temp -p && mkdir /data/logs -p && mkdir -p /data/output && chmod a+rx /data && chmod a+rwx /data/output
 
 COPY src/bin/startAlgorithm /bin/startAlgorithm
 RUN chmod a+x /bin/startAlgorithm
