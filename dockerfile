@@ -21,6 +21,7 @@ RUN chmod a+x /bin/startAlgorithm
 
 RUN chmod a+x src/algorithm.sh
 
-RUN mkdir src/temp/ -p
+RUN chmod a+rwx temp
+
 
 #CMD "src/algorithm.sh"
