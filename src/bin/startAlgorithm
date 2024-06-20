@@ -1,3 +1,4 @@
 #!/bin/bash
+chmod +x /opt/poleno-algorithm/src/algorithm.sh
 cd /opt/poleno-algorithm/src/
 ./algorithm.sh
