@@ -19,7 +19,8 @@ RUN mkdir temp -p && mkdir /data/logs -p && mkdir -p /data/output && chmod a+rx 
 COPY src/bin/startAlgorithm /bin/startAlgorithm
 RUN chmod a+x /bin/startAlgorithm
 
-RUN mkdir /opt/poleno-algorithm -p
-COPY . /opt/poleno-algorithm/
+#RUN mkdir /opt/poleno-algorithm -p
+#COPY . /opt/poleno-algorithm/
+#chmod +x /opt/poleno-algorithm/src/algorithm.sh
 
 #CMD "src/algorithm.sh"
