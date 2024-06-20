@@ -21,9 +21,6 @@ RUN chmod a+x /bin/startAlgorithm
 
 RUN chmod a+x src/algorithm.sh
 
-
-#RUN mkdir /opt/poleno-algorithm -p
-#COPY . /opt/poleno-algorithm/
-#chmod +x /opt/poleno-algorithm/src/algorithm.sh
+RUN mkdir src/temp/ -p
 
 #CMD "src/algorithm.sh"
