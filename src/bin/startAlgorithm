@@ -1,3 +1,2 @@
 #!/bin/bash
-cd src/
-./algorithm.sh
+/wd/src/algorithm.sh
