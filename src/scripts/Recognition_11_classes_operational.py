@@ -21,7 +21,7 @@ sys.stderr = open(os.devnull, 'w')
 from keras.models import load_model
 sys.stderr = stderr
 
-softwareVersion = "v0.1"
+softwareVersion = "v0.1.1"
 
 #stderr = sys.stderr
 #sys.stderr = open(os.devnull, 'w')
