@@ -11,7 +11,7 @@ WORKDIR /wd
 COPY . ./
 
 # As the algorithm will be executed by a non-root user, the output folder has to be writable for all
-RUN mkdir src/temp -p && mkdir /data/logs -p && mkdir -p /data/output && chmod a+rx /data && chmod a+rwx /data/output
+RUN mkdir src/temp -p && chmod a+rx src/temp  && mkdir /data/logs -p && mkdir -p /data/output && chmod a+rx /data && chmod a+rwx /data/output
 
 # The startAlgorithm script is the entry point of the container. It is the script that will be executed 
 # when the container is run by SYLVA IT infrastructure. The script itself should just start your algorithm 
@@ -23,4 +23,4 @@ RUN chmod a+x /bin/startAlgorithm
 RUN chmod -R a+rwx /wd
 
 
-#CMD "src/algorithm.sh"
+CMD "src/algorithm.sh"

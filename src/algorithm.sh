@@ -13,14 +13,14 @@ mkdir -p $Poleno_output
 
 for Zip_to_process in `find $Poleno_hourly_zips -name "*.zip" -printf "%f\n"`; do
 
-	Zip_date=`echo $Zip_to_process | cut -b 1-14`
+	#Zip_date=`echo $Zip_to_process | cut -b 1-14`
 	
 	echo 'Processing ' $Zip_to_process
-	Temp_folder=src/temp/Poleno_Recognition_Oper_$Zip_date
+	Temp_folder=src/temp/$Zip_to_process
 
 	start=$(date +%s)
 	if [ -d "$Temp_folder" ]; then rm -Rf $Temp_folder; fi
-	mkdir $Temp_folder
+	mkdir $Temp_folder -p 
 	echo "Unzipping file to temp folder... "
 
 	unzip -q $Poleno_hourly_zips/$Zip_to_process -d $Temp_folder
@@ -33,7 +33,7 @@ for Zip_to_process in `find $Poleno_hourly_zips -name "*.zip" -printf "%f\n"`; d
 
 	echo 'Running the algorithm and creating JSON... '
 	
-	python $Poleno_scripts/Recognition_11_classes_operational.py $Temp_folder $Poleno_output $Zip_date || EXIT_CODE=$?
+	python $Poleno_scripts/Recognition_11_classes_operational.py $Temp_folder $Poleno_output || EXIT_CODE=$?
 	echo 'Errors: ' $EXIT_CODE
 	
 	end=$(date +%s)
