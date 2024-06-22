@@ -7,7 +7,7 @@ set -u
 Poleno_hourly_zips=/data/input/
 Poleno_output=/data/output/
 Log_dir=/data/logs/
-Poleno_scripts=src/scripts
+Poleno_scripts=/wd/src/scripts
 
 mkdir -p $Poleno_output
 
