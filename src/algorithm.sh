@@ -16,7 +16,7 @@ for Zip_to_process in `find $Poleno_hourly_zips -name "*.zip" -printf "%f\n"`; d
 	Zip_date=`echo $Zip_to_process | cut -b 1-14`
 	
 	echo 'Processing ' $Zip_to_process
-	Temp_folder=temp/Poleno_Recognition_Oper_$Zip_date
+	Temp_folder=src/temp/Poleno_Recognition_Oper_$Zip_date
 
 	start=$(date +%s)
 	if [ -d "$Temp_folder" ]; then rm -Rf $Temp_folder; fi

@@ -17,9 +17,8 @@ RUN mkdir src/temp -p && mkdir /data/logs -p && mkdir -p /data/output && chmod a
 # when the container is run by SYLVA IT infrastructure. The script itself should just start your algorithm 
 # to get all files in folder /data/input processed.
 COPY src/bin/startAlgorithm /bin/startAlgorithm
-RUN chmod a+x /bin/startAlgorithm
 
-RUN chmod a+x src/algorithm.sh
+RUN chmod a+x /bin/startAlgorithm
 
 RUN chmod -R a+rwx /wd
 

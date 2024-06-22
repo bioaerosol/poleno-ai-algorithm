@@ -21,7 +21,7 @@ sys.stderr = open(os.devnull, 'w')
 from keras.models import load_model
 sys.stderr = stderr
 
-softwareVersion = "1.0.0"
+softwareVersion = "v0.1"
 
 #stderr = sys.stderr
 #sys.stderr = open(os.devnull, 'w')
@@ -108,7 +108,7 @@ def imgValidation(json):
 
 ### Start
 
-zip_date = sys.argv[3]
+# zip_date = sys.argv[3]
 # rcg_zip = ZipFile(zip_date, 'r')
 # json_names = [s for s in rcg_zip.namelist() if 'event.json' in s]
 json_names = [s for s in os.listdir(sys.argv[1]) if 'event.json' in s]
@@ -247,6 +247,10 @@ for i in range(len(json_names)):
                                   json_data['computedData']['img1Properties']['meanIntensity']])
         eccentricity = np.array([json_data['computedData']['img0Properties']['eccentricity'],
                                  json_data['computedData']['img1Properties']['eccentricity']])
+        utcTimestamp = json_data['metadata']['utcEvent']
+        dt = datetime.utcfromtimestamp(utcTimestamp)
+        zip_date = dt.strftime("%Y-%m-%d_%HH")
+
 
         if recognition[0] == 1:  # alnus
             if (sol <= sol_min*PAC.alnus_sol_range[0]).any() or (sol > sol_max*PAC.alnus_sol_range[1]).any() or (area <= PAC.alnus_area_range[0]).any() or (area > PAC.alnus_area_range[1]).any() or (minorAxis <= PAC.alnus_minorAxis_range[0]).any() or (minorAxis > PAC.alnus_minorAxis_range[1]).any() or (majorAxis <= PAC.alnus_majorAxis_range[0]).any() or (majorAxis > PAC.alnus_majorAxis_range[1]).any() or (perimeter <= PAC.alnus_perimeter_range[0]).any() or (perimeter > PAC.alnus_perimeter_range[1]).any() or (maxIntensity <= PAC.alnus_maxIntensity_range[0]).any() or (maxIntensity > PAC.alnus_maxIntensity_range[1]).any() or (minIntensity <= PAC.alnus_minIntensity_range[0]).any() or (minIntensity > PAC.alnus_minIntensity_range[1]).any() or (minIntensity <= PAC.alnus_minIntensity_range[0]).any() or (minIntensity > PAC.alnus_minIntensity_range[1]).any() or (meanIntensity <= PAC.alnus_meanIntensity_range[0]).any() or (meanIntensity > PAC.alnus_meanIntensity_range[1]).any() or (eccentricity <= PAC.alnus_eccentricity_range[0]).any() or (eccentricity > PAC.alnus_eccentricity_range[1]).any():
