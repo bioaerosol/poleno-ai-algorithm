@@ -21,7 +21,7 @@ sys.stderr = open(os.devnull, 'w')
 from keras.models import load_model
 sys.stderr = stderr
 
-softwareVersion = "v0.1.1"
+softwareVersion = "v0.1.2"
 
 #stderr = sys.stderr
 #sys.stderr = open(os.devnull, 'w')
@@ -108,7 +108,7 @@ def imgValidation(json):
 
 ### Start
 
-# zip_date = sys.argv[3]
+zip_date = sys.argv[3]
 # rcg_zip = ZipFile(zip_date, 'r')
 # json_names = [s for s in rcg_zip.namelist() if 'event.json' in s]
 json_names = [s for s in os.listdir(sys.argv[1]) if 'event.json' in s]
@@ -129,7 +129,7 @@ df_stats.iloc[0] = np.zeros(len(df_stats.columns))
 model_name = '/wd/src/models/Poleno_2021_10_plus_mist_Classes_Model_v2.h5'
 model = load_model(model_name)
 
-
+instrument = None
 # All_areas = np.zeros(len(json_names))
 
 for i in range(len(json_names)):
@@ -247,9 +247,9 @@ for i in range(len(json_names)):
                                   json_data['computedData']['img1Properties']['meanIntensity']])
         eccentricity = np.array([json_data['computedData']['img0Properties']['eccentricity'],
                                  json_data['computedData']['img1Properties']['eccentricity']])
-        utcTimestamp = json_data['metadata']['utcEvent']
-        dt = datetime.utcfromtimestamp(utcTimestamp)
-        zip_date = dt.strftime("%Y-%m-%d_%HH")
+        #utcTimestamp = json_data['metadata']['utcEvent']
+        #dt = datetime.utcfromtimestamp(utcTimestamp)
+        #zip_date = dt.strftime("%Y-%m-%d_%HH")
 
 
         if recognition[0] == 1:  # alnus
@@ -423,20 +423,22 @@ pollen_list = []
 for index, polen in enumerate(pollen):
     pollen_list.append ({"name": polen, "concentration": to_csv_data[index], "uncertainty": 0})
 
-
-device = [{'id':instrument,'serial_number': "123",'software_version':softwareVersion}]
-
-data = [{'start': utc_time_start,
-        'end': utc_time_end,
-        'device': pd.Series(device)[0],
-        'pollen': pd.Series(pollen_list)
-        }]
-
-pd_to_json = pd.DataFrame(data)
-
- 
-path = sys.argv[2] + zip_date + '.json'
-pd_to_json.to_json(path, orient="records", lines=True)
+if instrument:
+    device = [{'id':instrument,'serial_number': "123",'software_version':softwareVersion}]
+    
+    data = [{'start': utc_time_start,
+            'end': utc_time_end,
+            'device': pd.Series(device)[0],
+            'pollen': pd.Series(pollen_list)
+            }]
+    
+    pd_to_json = pd.DataFrame(data)
+    
+     
+    path = sys.argv[2] + zip_date + '.json'
+    pd_to_json.to_json(path, orient="records", lines=True)
+    
+    
 #json_file = pd_to_json.to_json(orient="records", lines=True)
 #print(json_file)
 

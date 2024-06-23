@@ -13,6 +13,11 @@ mkdir -p $Poleno_output
 
 for Zip_to_process in `find $Poleno_hourly_zips -name "*.zip" -printf "%f\n"`; do
 
+	filename=$Zip_to_process
+	base_name=$(basename "$filename" .${filename##*.})
+	substring=$(echo "$base_name" | rev | cut -c 1-14 | rev)
+	Zip_date=`echo "$substring"`
+
 	#Zip_date=`echo $Zip_to_process | cut -b 1-14`
 	
 	echo 'Processing ' $Zip_to_process
@@ -33,7 +38,7 @@ for Zip_to_process in `find $Poleno_hourly_zips -name "*.zip" -printf "%f\n"`; d
 
 	echo 'Running the algorithm and creating JSON... '
 	
-	python $Poleno_scripts/Recognition_11_classes_operational.py $Temp_folder $Poleno_output || EXIT_CODE=$?
+	python $Poleno_scripts/Recognition_11_classes_operational.py $Temp_folder $Poleno_output $Zip_date || EXIT_CODE=$?
 	echo 'Errors: ' $EXIT_CODE
 	
 	end=$(date +%s)
