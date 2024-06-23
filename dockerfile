@@ -23,4 +23,5 @@ RUN chmod a+x /bin/startAlgorithm
 RUN chmod -R a+rwx /wd
 
 
-CMD "src/algorithm.sh"
+# needed for local test
+#CMD "src/algorithm.sh"
