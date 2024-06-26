@@ -1,7 +1,7 @@
 """
     Swisens Poleno Recognition Configs module
     ------------
-    This module is for setting configurations for the cleaning process with the Poleno_recognition_sorting.py module.
+    This module is for setting configurations for the recognition process with the Recognition_11_classes_operational.py module.
 
 """
 
@@ -59,26 +59,26 @@ ending = '.json'
 ## Default json file -> If the json file has at least these keys, it will be accepted
 json_default = {
     "valid": True,
-    "trigTDiff": 0.0,
-    "sipmData":[],
-    "utcEvent":0.0,
-    "holo0": {
-        "xy": [0.0,0.0],
-        "zRough": 0.0,
-        "zFine": 0.0
-    },
-    "holo1": {
-        "xy": [0.0,0.0],
-        "zRough": 0.0,
-        "zFine": 0.0
-    },
+    "trigger_peak_delay": 0.0,
+    "computed_data":[],
+    "hw_timestamp":0.0,
+#    "holo0": {
+#        "xy": [0.0,0.0],
+#        "zRough": 0.0,
+#        "zFine": 0.0
+#    },
+#    "holo1": {
+#        "xy": [0.0,0.0],
+#        "zRough": 0.0,
+#        "zFine": 0.0
+#    },
     "velocity": 0.0,
-    "adcDump": {
-        "0A": [],
-        "0B": [],
-        "1A": [],
-        "1B": [],
-        "2A": [],
-        "2B": []
-    }
+#    "adcDump": {
+#        "0A": [],
+#        "0B": [],
+#        "1A": [],
+#        "1B": [],
+#        "2A": [],
+#        "2B": []
+#    }
 }
