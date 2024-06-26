@@ -108,8 +108,7 @@ df_stats = pd.DataFrame(
 df_stats.iloc[0] = np.zeros(len(df_stats.columns))
 
 # print('Loading model')
-# model_name = '/wd/src/models/Poleno_2021_10_plus_mist_Classes_Model_v2.h5'
-model_name = '/home/users/silam/Poleno_scripts/Oper_Recognition_2022/Poleno_2021_10_plus_mist_Classes_Model_v2.h5'
+model_name = '/wd/src/models/Poleno_2021_10_plus_mist_Classes_Model_v2.h5'
 model = load_model(model_name)
 
 instrument = json_names[0].split("_",1)[0]
