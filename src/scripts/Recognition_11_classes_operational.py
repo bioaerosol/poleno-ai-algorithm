@@ -108,7 +108,7 @@ df_stats = pd.DataFrame(
 df_stats.iloc[0] = np.zeros(len(df_stats.columns))
 
 # print('Loading model')
-model_name = '/wd/src/models/Poleno_2021_10_plus_mist_Classes_Model_v2.h5'
+model_name = 'src/models/Poleno_2021_10_plus_mist_Classes_Model_v2.h5'
 model = load_model(model_name)
 
 instrument = json_names[0].split("_",1)[0]
@@ -427,7 +427,7 @@ to_csv_data[10] = classes[10] * 2
 
 pollen_list = []
 for index, polen in enumerate(pollen):
-    pollen_list.append ({"name": polen, "concentration": to_csv_data[index], "uncertainty": "None"})
+    pollen_list.append ({"name": polen, "concentration": to_csv_data[index], "uncertainty": None})
 
 if instrument:
     device = [{'id':instrument,'serial_number':serial_number,'software_version':softwareVersion}]
